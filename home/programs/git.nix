@@ -1,0 +1,1 @@
+/etc/nixos/home/programs/git.nix
