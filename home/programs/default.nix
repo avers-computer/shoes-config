@@ -1,1 +1,6 @@
-/etc/nixos/home/programs/default.nix
+{
+  imports = [
+    ./git.nix
+    ./utils.nix
+  ];
+}

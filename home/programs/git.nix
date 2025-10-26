@@ -1,1 +1,10 @@
-/etc/nixos/home/programs/git.nix
+{
+  pkgs,
+  ...
+}: {
+  programs.git = {
+    enable = true;
+    userName = "netcdf";
+    userEmail = "netcdf@example.com";
+  };
+}
