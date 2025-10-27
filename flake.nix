@@ -38,19 +38,6 @@
 
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
-    # Enable nginx
-    services.nginx = {
-      enable = true;
-      virtualHosts.localhost = {
-        locations."/" = {
-          return = "200 '<html><body>It works</body></html>'";
-          extraConfig = ''
-            default_type text/html;
-          '';
-        };
-      };
-    };
-
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
