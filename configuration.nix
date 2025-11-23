@@ -9,12 +9,57 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  nixpkgs.config.allowUnfree = true;
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-  nix.settings.download-buffer-size = 1048576000;
+
+
+  # Set your time zone.
+  time.timeZone = "America/Indiana/Indianapolis";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.shoes = {
+    isNormalUser = true;
+    description = "shoes";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    #  thunderbird
+    ];
+  };
+
+
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
+  # Install firefox.
+  programs.firefox.enable = true;
+
+
+  # export NIXPKGS_ALLOW_UNFREE=1
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  # Enable the Flakes feature and new CLI
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

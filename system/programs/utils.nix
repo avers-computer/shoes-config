@@ -3,6 +3,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    vim
     docker
     docker-compose
 
@@ -63,5 +64,7 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
-  ];  
+  ];
+
+  environment.variables.EDITOR = "vim";
 }

@@ -6,6 +6,16 @@
     docker
     docker-compose
 
+    git
+    vim
+    wget
+    nmap
+    traceroute
+    static-web-server
+    headscale
+    inetutils
+    kitty
+    vscode
     # archives
     zip
     unzip

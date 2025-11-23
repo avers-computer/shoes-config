@@ -7,7 +7,7 @@
     enable = true;
     virtualHosts.localhost = {
       locations."/" = {
-        return = "200 '<html><body>It works</body></html>'";
+        return = "200 '<html><body>It works3</body></html>'";
         extraConfig = ''
         default_type text/html;
         '';
@@ -15,6 +15,13 @@
     };
   };
 
+  services.static-web-server = {
+    enable = true;
+    root = "/home/shoes/pages";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
